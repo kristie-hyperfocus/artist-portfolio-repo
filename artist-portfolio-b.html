@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cora Ashby — Berlin-based painter working in large-scale oil and charcoal. Raw, confrontational, singular. Original works, limited editions and commissions.">
+  <meta name="keywords" content="Cora Ashby, painter, oil painting, charcoal, Berlin artist, contemporary art, expressionist, original paintings, large scale art">
+  <meta property="og:title" content="Cora Ashby — Painter">
+  <meta property="og:description" content="Berlin-based painter. Large-scale oil and charcoal. Raw, confrontational, singular.">
+  <meta property="og:type" content="website">
+  <title>Cora Ashby — Painter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ===== TOKENS ===== */
+    :root {
+      --black:    #09080A;
+      --bg:       #0D0C0E;
+      --surface:  #141218;
+      --surface2: #1C1920;
+      --border:   rgba(255,255,255,0.07);
+      --white:    #F2EFF5;
+      --muted:    #6A6670;
+      --red:      #B8203A;
+      --red-lite: #D93050;
+      --red-dim:  rgba(184,32,58,0.18);
+      --font-disp: 'Bebas Neue', Impact, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    button, a { cursor: pointer; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: var(--nav-h);
+      background: var(--black);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-disp);
+      font-size: 1.5rem; letter-spacing: 0.12em;
+      color: var(--white); text-decoration: none;
+    }
+    .nav-logo span { color: var(--red); }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-mark {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); text-decoration: none;
+      border: 1px solid var(--red);
+      padding: 8px 20px;
+      transition: all 0.3s;
+    }
+    .nav-mark:hover { background: var(--red); color: var(--white); }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1800&q=90');
+      background-size: cover; background-position: center 40%;
+      filter: brightness(0.55) contrast(1.1) saturate(0.6);
+      transform: scale(1.04);
+      animation: heroBreath 12s ease-in-out infinite alternate;
+    }
+    @keyframes heroBreath {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1.0); }
+    }
+
+    .hero-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(9,8,10,0.92) 0%,
+        rgba(9,8,10,0.55) 45%,
+        rgba(9,8,10,0.15) 100%
+      );
+    }
+    .hero-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
+      background: linear-gradient(to top, rgba(9,8,10,1) 0%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 6% 9%;
+      max-width: 760px;
+    }
+
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 18px;
+    }
+    .hero-line { width: 36px; height: 1px; background: var(--red); }
+    .hero-tag {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .hero-name {
+      font-family: var(--font-disp);
+      font-size: clamp(5rem, 14vw, 11rem);
+      line-height: 0.88;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero-name span { color: var(--red); }
+
+    .hero-rule {
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, var(--red), transparent);
+      margin-bottom: 22px;
+    }
+
+    .hero-sub {
+      font-size: 0.82rem; font-weight: 300;
+      line-height: 1.8; color: rgba(242,239,245,0.65);
+      max-width: 420px; margin-bottom: 36px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn-red {
+      display: inline-block; font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--white); background: var(--red);
+      text-decoration: none; padding: 13px 32px;
+      border: 1px solid var(--red);
+      transition: all 0.3s;
+    }
+    .btn-red:hover { background: var(--red-lite); border-color: var(--red-lite); }
+
+    .btn-ghost {
+      display: inline-block; font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--white); background: transparent;
+      text-decoration: none; padding: 13px 32px;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { border-color: var(--white); }
+
+    .hero-scroll {
+      position: absolute; right: 5%; bottom: 8%;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 12px; z-index: 2;
+    }
+    .hero-scroll span {
+      writing-mode: vertical-rl;
+      font-size: 0.6rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .hero-scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.7); }
+    }
+
+    /* ===== SECTION COMMONS ===== */
+    .s-label {
+      font-size: 0.62rem; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 10px;
+    }
+    .s-title {
+      font-family: var(--font-disp);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: 0.04em; color: var(--white);
+      line-height: 0.95;
+    }
+    .s-divider { width: 36px; height: 2px; background: var(--red); margin: 20px 0; }
+    .s-body {
+      font-size: 0.88rem; font-weight: 300; line-height: 1.9;
+      color: rgba(242,239,245,0.65); max-width: 500px;
+    }
+
+    /* ===== ARTWORK VIEWER ===== */
+    #gallery { background: var(--black); padding: 90px 0 0; }
+
+    .gallery-header {
+      padding: 0 6%; margin-bottom: 40px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+
+    .viewer-main {
+      position: relative; width: 100%; height: 68vh;
+      overflow: hidden; background: #060507;
+    }
+
+    .viewer-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0;
+      filter: brightness(0.82) contrast(1.08) saturate(0.65);
+      transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1);
+    }
+    .viewer-slide.active { opacity: 1; }
+
+    .viewer-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(9,8,10,0.88) 0%,
+        rgba(9,8,10,0.2) 45%,
+        transparent 70%
+      );
+    }
+
+    .viewer-info {
+      position: absolute; bottom: 0; left: 0;
+      padding: 36px 6%;
+      display: flex; justify-content: space-between;
+      align-items: flex-end; width: 100%;
+    }
+
+    .viewer-num {
+      font-family: var(--font-disp);
+      font-size: 5rem; color: rgba(255,255,255,0.07);
+      line-height: 1; margin-right: 20px;
+      flex-shrink: 0;
+    }
+
+    .viewer-text { flex: 1; }
+    .viewer-tag {
+      font-size: 0.6rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 6px;
+    }
+    .viewer-title {
+      font-family: var(--font-disp);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: 0.04em; color: var(--white);
+      margin-bottom: 8px; line-height: 1;
+    }
+    .viewer-desc {
+      font-size: 0.82rem; font-weight: 300;
+      color: rgba(242,239,245,0.6); max-width: 420px;
+    }
+
+    .viewer-cta {
+      flex-shrink: 0; margin-left: 40px;
+    }
+
+    /* Thumbnail strip */
+    .thumb-strip {
+      display: flex; gap: 3px;
+    }
+    .thumb {
+      flex: 1; height: 90px;
+      background-size: cover; background-position: center;
+      filter: brightness(0.55) saturate(0.5);
+      cursor: pointer;
+      position: relative;
+      transition: filter 0.35s ease;
+    }
+    .thumb::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--red);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .thumb.active { filter: brightness(0.85) saturate(0.75); }
+    .thumb.active::after { transform: scaleX(1); }
+    .thumb:hover { filter: brightness(0.72) saturate(0.65); }
+
+    /* ===== ABOUT ===== */
+    #about {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      min-height: 90vh;
+    }
+
+    .about-panel {
+      background: var(--surface);
+      padding: 90px 7%;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .about-img-wrap {
+      position: relative; overflow: hidden;
+    }
+    .about-img-wrap img {
+      height: 100%;
+      filter: brightness(0.8) contrast(1.05) saturate(0.5);
+      transition: transform 0.8s ease;
+    }
+    .about-img-wrap:hover img { transform: scale(1.03); }
+    .about-img-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(184,32,58,0.12) 0%, transparent 60%);
+    }
+
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 40px;
+      border-top: 1px solid var(--border); padding-top: 32px;
+    }
+    .stat-val {
+      font-family: var(--font-disp);
+      font-size: 3rem; color: var(--white);
+      line-height: 1;
+    }
+    .stat-val span { color: var(--red); }
+    .stat-lbl {
+      font-size: 0.65rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ===== COLLECTIONS ===== */
+    #collections { background: var(--black); padding: 90px 0; }
+    .coll-header { padding: 0 6%; margin-bottom: 44px; }
+
+    /* Marquee */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0; margin-bottom: 44px;
+      background: var(--surface);
+    }
+    .marquee-track {
+      display: flex; gap: 60px;
+      animation: marqueeScroll 20s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      font-family: var(--font-disp);
+      font-size: 1.1rem; letter-spacing: 0.12em;
+      color: var(--muted); flex-shrink: 0;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .marquee-dot { width: 5px; height: 5px; background: var(--red); border-radius: 50%; }
+
+    .coll-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px; padding: 0 6%;
+    }
+
+    .coll-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--surface2);
+    }
+    .coll-card:first-child { aspect-ratio: auto; grid-row: span 2; }
+
+    .coll-bg {
+      width: 100%; height: 100%;
+      background-size: cover; background-position: center;
+      filter: brightness(0.7) contrast(1.05) saturate(0.55);
+      transition: transform 0.7s ease, filter 0.5s ease;
+    }
+    .coll-card:hover .coll-bg {
+      transform: scale(1.05);
+      filter: brightness(0.8) contrast(1.1) saturate(0.7);
+    }
+
+    .coll-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(9,8,10,0.85) 0%, transparent 55%);
+    }
+    .coll-red-line {
+      position: absolute; bottom: 0; left: 0;
+      height: 3px; width: 0; background: var(--red);
+      transition: width 0.5s ease;
+    }
+    .coll-card:hover .coll-red-line { width: 100%; }
+
+    .coll-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 22px;
+    }
+    .coll-count {
+      font-size: 0.6rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 5px;
+    }
+    .coll-name {
+      font-family: var(--font-disp);
+      font-size: 1.5rem; letter-spacing: 0.06em;
+      color: var(--white);
+    }
+
+    /* ===== RECENT WORKS ===== */
+    #recent { background: var(--bg); padding: 90px 6%; }
+    .recent-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 44px; }
+
+    .recent-masonry {
+      columns: 3; column-gap: 4px;
+    }
+    .recent-item {
+      break-inside: avoid; margin-bottom: 4px;
+      position: relative; overflow: hidden;
+      background: var(--surface2);
+    }
+    .recent-item img {
+      display: block; width: 100%;
+      filter: brightness(0.8) contrast(1.05) saturate(0.6);
+      transition: transform 0.65s ease, filter 0.5s ease;
+    }
+    .recent-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(0.9) contrast(1.1) saturate(0.75);
+    }
+    .recent-hover {
+      position: absolute; inset: 0;
+      background: rgba(184,32,58,0.55);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: flex-end;
+      padding: 22px;
+    }
+    .recent-item:hover .recent-hover { opacity: 1; }
+    .recent-hover-tag {
+      font-size: 0.6rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75);
+      margin-bottom: 4px;
+    }
+    .recent-hover-title {
+      font-family: var(--font-disp);
+      font-size: 1.4rem; letter-spacing: 0.05em; color: var(--white);
+    }
+
+    /* ===== INSPIRATIONS ===== */
+    #inspirations { background: var(--surface); padding: 90px 6%; }
+
+    .inspo-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+      margin-top: 50px;
+    }
+
+    .inspo-main-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      font-style: italic; font-weight: 400;
+      line-height: 1.5; color: var(--white);
+      border-left: 3px solid var(--red);
+      padding-left: 28px; margin-bottom: 28px;
+    }
+    .inspo-body {
+      font-size: 0.87rem; font-weight: 300;
+      line-height: 1.9; color: rgba(242,239,245,0.6);
+      margin-bottom: 32px;
+    }
+
+    .inspo-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .inspo-tag {
+      font-size: 0.63rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      border: 1px solid var(--border); padding: 6px 14px;
+      transition: all 0.3s;
+    }
+    .inspo-tag:hover { border-color: var(--red); color: var(--red); }
+
+    .inspo-images {
+      display: grid; grid-template-columns: 1fr 1fr;
+      grid-template-rows: 220px 220px;
+      gap: 4px;
+    }
+    .inspo-img {
+      overflow: hidden; background: var(--surface2);
+    }
+    .inspo-img:first-child { grid-row: span 2; }
+    .inspo-img img {
+      height: 100%;
+      filter: brightness(0.75) contrast(1.05) saturate(0.45);
+      transition: transform 0.65s ease, filter 0.5s ease;
+    }
+    .inspo-img:hover img {
+      transform: scale(1.04);
+      filter: brightness(0.85) saturate(0.6);
+    }
+
+    .inspo-influences {
+      margin-top: 56px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; border: 1px solid var(--border);
+    }
+    .influence {
+      padding: 28px 24px;
+      background: var(--black);
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .influence:last-child { border-right: none; }
+    .influence:hover { background: var(--surface2); }
+    .influence-num {
+      font-family: var(--font-disp);
+      font-size: 3rem; color: var(--red-dim);
+      line-height: 1; margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--red) 0%, var(--muted) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .influence-title {
+      font-family: var(--font-disp);
+      font-size: 1.1rem; letter-spacing: 0.08em;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .influence-body {
+      font-size: 0.78rem; font-weight: 300;
+      line-height: 1.7; color: var(--muted);
+    }
+
+    /* ===== SOCIAL ===== */
+    #social { background: var(--black); padding: 80px 6%; }
+    .social-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 36px;
+    }
+
+    .social-grid {
+      display: grid; grid-template-columns: repeat(6, 1fr);
+      gap: 3px; margin-bottom: 28px;
+    }
+    .social-tile {
+      aspect-ratio: 1;
+      background-size: cover; background-position: center;
+      filter: brightness(0.65) saturate(0.4);
+      position: relative; overflow: hidden;
+      cursor: pointer;
+      transition: filter 0.35s ease;
+    }
+    .social-tile::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--red); opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .social-tile:hover { filter: brightness(0.8) saturate(0.7); }
+    .social-tile:hover::after { opacity: 0.25; }
+
+    .social-handle {
+      font-family: var(--font-disp);
+      font-size: 1.3rem; letter-spacing: 0.1em;
+      color: var(--muted); margin-bottom: 16px;
+      display: block;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 60px 6% 28px;
+    }
+
+    .footer-top {
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 50px; margin-bottom: 50px;
+    }
+    .footer-logo-block .logo {
+      font-family: var(--font-disp);
+      font-size: 2.2rem; letter-spacing: 0.1em;
+      color: var(--white); margin-bottom: 16px;
+      display: block;
+    }
+    .footer-logo-block .logo span { color: var(--red); }
+    .footer-tagline {
+      font-size: 0.8rem; font-weight: 300;
+      line-height: 1.75; color: var(--muted);
+      margin-bottom: 26px;
+    }
+
+    .footer-nl { display: flex; }
+    .footer-nl input {
+      flex: 1; padding: 11px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--white); font-family: var(--font-sans);
+      font-size: 0.78rem; outline: none;
+      transition: border-color 0.3s;
+    }
+    .footer-nl input:focus { border-color: var(--red); }
+    .footer-nl input::placeholder { color: var(--muted); }
+    .footer-nl button {
+      padding: 11px 18px; background: var(--red);
+      border: none; color: var(--white);
+      font-family: var(--font-sans); font-size: 0.65rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      transition: background 0.3s;
+    }
+    .footer-nl button:hover { background: var(--red-lite); }
+
+    .footer-col h5 {
+      font-family: var(--font-disp);
+      font-size: 1rem; letter-spacing: 0.12em;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a {
+      font-size: 0.8rem; font-weight: 300;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); font-weight: 300; }
+    .footer-soc { display: flex; gap: 22px; }
+    .footer-soc a {
+      font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .footer-soc a:hover { color: var(--red); }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal:nth-child(2) { transition-delay: 0.1s; }
+    .reveal:nth-child(3) { transition-delay: 0.2s; }
+    .reveal:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      #about { grid-template-columns: 1fr; }
+      .about-img-wrap { height: 55vw; }
+      .inspo-layout { grid-template-columns: 1fr; }
+      .inspo-images { display: none; }
+      .coll-grid { grid-template-columns: 1fr 1fr; }
+      .coll-card:first-child { grid-row: auto; aspect-ratio: 3/4; }
+      .recent-masonry { columns: 2; }
+      .social-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 600px) {
+      .hero-name { font-size: 18vw; }
+      .recent-masonry { columns: 2; }
+      .coll-grid { grid-template-columns: 1fr; }
+      .inspo-influences { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================================================================ NAV -->
+<nav id="main-nav" role="navigation" aria-label="Primary navigation">
+  <a href="#" class="nav-logo" aria-label="Cora Ashby — Home">CORA<span>.</span>ASHBY</a>
+  <ul class="nav-links" role="list">
+    <li><a href="#gallery">Works</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#inspirations">Influences</a></li>
+    <li><a href="#social">Studio</a></li>
+  </ul>
+  <a href="mailto:studio@coraashby.com" class="nav-mark" aria-label="Enquire about works">Enquire</a>
+</nav>
+
+<!-- ============================================================= HERO -->
+<section id="hero" role="region" aria-label="Artist introduction">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-gradient" aria-hidden="true"></div>
+  <div class="hero-bottom" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-line"></div>
+      <span class="hero-tag">Berlin · Oil &amp; Charcoal · Est. 2006</span>
+    </div>
+    <h1 class="hero-name">CORA<br><span>ASHBY</span></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">
+      Uncompromising. Unflinching. Painting as confrontation — with the body, with memory, with the weight of what we inherit.
+    </p>
+    <div class="hero-btns">
+      <a href="#gallery" class="btn-red">View Works</a>
+      <a href="#about" class="btn-ghost">The Artist</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ========================================================= GALLERY VIEWER -->
+<section id="gallery" aria-labelledby="gallery-heading">
+  <div class="gallery-header">
+    <div>
+      <p class="s-label">Selected Works</p>
+      <h2 class="s-title" id="gallery-heading">THE WORKS</h2>
+    </div>
+    <a href="#collections" class="btn-ghost" style="font-size:0.65rem;padding:10px 22px">All Collections</a>
+  </div>
+
+  <div class="viewer-main" id="viewerMain">
+
+    <div class="viewer-slide active" id="vs0"
+         style="background-image:url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1600&q=85')"></div>
+    <div class="viewer-slide" id="vs1"
+         style="background-image:url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1600&q=85')"></div>
+    <div class="viewer-slide" id="vs2"
+         style="background-image:url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1600&q=85')"></div>
+    <div class="viewer-slide" id="vs3"
+         style="background-image:url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=1600&q=85')"></div>
+    <div class="viewer-slide" id="vs4"
+         style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=85')"></div>
+    <div class="viewer-slide" id="vs5"
+         style="background-image:url('https://images.unsplash.com/photo-1576769562804-455efbe26d81?w=1600&q=85')"></div>
+
+    <div class="viewer-overlay" aria-hidden="true"></div>
+
+    <div class="viewer-info">
+      <div class="viewer-num" id="vNum" aria-hidden="true">01</div>
+      <div class="viewer-text">
+        <p class="viewer-tag" id="vTag">Oil on Canvas · 240 × 320cm · 2024</p>
+        <h3 class="viewer-title" id="vTitle">The Weight of Inheritance</h3>
+        <p class="viewer-desc" id="vDesc">Dark grounds and raw pigment applied with palette knife and bare hands — a work about what we carry without choosing to.</p>
+      </div>
+      <div class="viewer-cta">
+        <button class="btn-red" style="font-size:0.65rem;padding:11px 24px">Enquire</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="thumb-strip" id="thumbStrip" role="list" aria-label="Artwork thumbnails">
+    <div class="thumb active" role="listitem" tabindex="0" data-index="0"
+         style="background-image:url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=400&q=80')"
+         aria-label="The Weight of Inheritance"></div>
+    <div class="thumb" role="listitem" tabindex="0" data-index="1"
+         style="background-image:url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&q=80')"
+         aria-label="Scar Cartography"></div>
+    <div class="thumb" role="listitem" tabindex="0" data-index="2"
+         style="background-image:url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=400&q=80')"
+         aria-label="Red Witness"></div>
+    <div class="thumb" role="listitem" tabindex="0" data-index="3"
+         style="background-image:url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&q=80')"
+         aria-label="The Unnamed Hours"></div>
+    <div class="thumb" role="listitem" tabindex="0" data-index="4"
+         style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80')"
+         aria-label="Afterburn"></div>
+    <div class="thumb" role="listitem" tabindex="0" data-index="5"
+         style="background-image:url('https://images.unsplash.com/photo-1576769562804-455efbe26d81?w=400&q=80')"
+         aria-label="Interior with Shadow"></div>
+  </div>
+</section>
+
+<!-- ============================================================= ABOUT -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="about-panel">
+    <p class="s-label">The Artist</p>
+    <h2 class="s-title" id="about-heading">CORA<br>ASHBY</h2>
+    <div class="s-divider"></div>
+    <p class="s-body">
+      Born in Belfast, trained at Städelschule Frankfurt, based in Berlin for the last eighteen years. Ashby's practice is rooted in the body — its capacity for violence, tenderness, endurance, and collapse.
+    </p>
+    <br>
+    <p class="s-body">
+      Working primarily in oil and charcoal on raw linen, she builds surfaces over months, layering, scraping back, burning edges. Her paintings resist narrative. They insist on presence.
+    </p>
+    <div class="about-stats">
+      <div>
+        <p class="stat-val">20<span>+</span></p>
+        <p class="stat-lbl">Institutions</p>
+      </div>
+      <div>
+        <p class="stat-val">47</p>
+        <p class="stat-lbl">Solo Shows</p>
+      </div>
+      <div>
+        <p class="stat-val">18<span>yr</span></p>
+        <p class="stat-lbl">Berlin Studio</p>
+      </div>
+      <div>
+        <p class="stat-val">5</p>
+        <p class="stat-lbl">Awards</p>
+      </div>
+    </div>
+    <br><br>
+    <a href="#" class="btn-ghost">Download CV</a>
+  </div>
+
+  <div class="about-img-wrap">
+    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&q=80"
+         alt="Cora Ashby, artist, in her Berlin studio"
+         loading="lazy">
+  </div>
+</section>
+
+<!-- ======================================================= COLLECTIONS -->
+<section id="collections" aria-labelledby="collections-heading">
+  <div class="coll-header">
+    <p class="s-label">Works by Series</p>
+    <h2 class="s-title" id="collections-heading">COLLECTIONS</h2>
+  </div>
+
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Ash &amp; Bone <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Night Cartography <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Body of Evidence <span class="marquee-dot"></span></span>
+      <span class="marquee-item">The Wound Series <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Inheritance <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Vigil <span class="marquee-dot"></span></span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item">Ash &amp; Bone <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Night Cartography <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Body of Evidence <span class="marquee-dot"></span></span>
+      <span class="marquee-item">The Wound Series <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Inheritance <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Vigil <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <div class="coll-grid">
+
+    <div class="coll-card reveal" tabindex="0" aria-label="Collection: Ash and Bone">
+      <div class="coll-bg" style="background-image:url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=900&q=80')"></div>
+      <div class="coll-overlay"></div>
+      <div class="coll-red-line"></div>
+      <div class="coll-info">
+        <p class="coll-count">14 Works · 2023–24</p>
+        <h3 class="coll-name">Ash &amp; Bone</h3>
+      </div>
+    </div>
+
+    <div class="coll-card reveal" tabindex="0" aria-label="Collection: Night Cartography">
+      <div class="coll-bg" style="background-image:url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&q=80')"></div>
+      <div class="coll-overlay"></div>
+      <div class="coll-red-line"></div>
+      <div class="coll-info">
+        <p class="coll-count">9 Works · 2022</p>
+        <h3 class="coll-name">Night Cartography</h3>
+      </div>
+    </div>
+
+    <div class="coll-card reveal" tabindex="0" aria-label="Collection: Body of Evidence">
+      <div class="coll-bg" style="background-image:url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&q=80')"></div>
+      <div class="coll-overlay"></div>
+      <div class="coll-red-line"></div>
+      <div class="coll-info">
+        <p class="coll-count">11 Works · 2021</p>
+        <h3 class="coll-name">Body of Evidence</h3>
+      </div>
+    </div>
+
+    <div class="coll-card reveal" tabindex="0" aria-label="Collection: Vigil">
+      <div class="coll-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80')"></div>
+      <div class="coll-overlay"></div>
+      <div class="coll-red-line"></div>
+      <div class="coll-info">
+        <p class="coll-count">7 Works · 2019</p>
+        <h3 class="coll-name">Vigil</h3>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================= RECENT WORKS -->
+<section id="recent" aria-labelledby="recent-heading">
+  <div class="recent-header">
+    <div>
+      <p class="s-label">New Studio Work</p>
+      <h2 class="s-title" id="recent-heading">RECENT</h2>
+    </div>
+    <a href="#gallery" class="btn-ghost" style="font-size:0.65rem;padding:10px 22px">All Works</a>
+  </div>
+
+  <div class="recent-masonry">
+
+    <div class="recent-item reveal">
+      <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800&q=80"
+           alt="Painting: Primer for the Unborn, 2024" loading="lazy">
+      <div class="recent-hover">
+        <span class="recent-hover-tag">Oil · 2024</span>
+        <span class="recent-hover-title">Primer for the Unborn</span>
+      </div>
+    </div>
+
+    <div class="recent-item reveal">
+      <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&q=80"
+           alt="Painting: Burn Season II, 2024" loading="lazy">
+      <div class="recent-hover">
+        <span class="recent-hover-tag">Charcoal · 2024</span>
+        <span class="recent-hover-title">Burn Season II</span>
+      </div>
+    </div>
+
+    <div class="recent-item reveal">
+      <img src="https://images.unsplash.com/photo-1576769562804-455efbe26d81?w=800&q=80"
+           alt="Painting: Low Altar, 2024" loading="lazy">
+      <div class="recent-hover">
+        <span class="recent-hover-tag">Mixed · 2024</span>
+        <span class="recent-hover-title">Low Altar</span>
+      </div>
+    </div>
+
+    <div class="recent-item reveal">
+      <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80"
+           alt="Painting: Disarticulation, 2024" loading="lazy">
+      <div class="recent-hover">
+        <span class="recent-hover-tag">Oil · 2024</span>
+        <span class="recent-hover-title">Disarticulation</span>
+      </div>
+    </div>
+
+    <div class="recent-item reveal">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+           alt="Painting: Threshold Study III, 2024" loading="lazy">
+      <div class="recent-hover">
+        <span class="recent-hover-tag">Oil · 2024</span>
+        <span class="recent-hover-title">Threshold Study III</span>
+      </div>
+    </div>
+
+    <div class="recent-item reveal">
+      <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&q=80"
+           alt="Painting: Residue, 2024" loading="lazy">
+      <div class="recent-hover">
+        <span class="recent-hover-tag">Charcoal · 2024</span>
+        <span class="recent-hover-title">Residue</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================================================== INSPIRATIONS -->
+<section id="inspirations" aria-labelledby="inspo-heading">
+  <p class="s-label">What Drives the Work</p>
+  <h2 class="s-title" id="inspo-heading">INFLUENCES</h2>
+
+  <div class="inspo-layout">
+
+    <div>
+      <p class="inspo-main-quote reveal">
+        "I'm not interested in beauty. I'm interested in what beauty costs."
+      </p>
+      <p class="inspo-body reveal">
+        Ashby's references are deliberately unfashionable: Bacon's tortured flesh, Kiefer's lead and ash, Goya's black paintings. She reads forensic pathology reports alongside poetry. She says the studio is a crime scene — something happened here, and the painting is the evidence.
+      </p>
+      <p class="inspo-body reveal">
+        Her process is physical, often violent. Works begin with hours of standing in front of the raw linen. "Painting begins with the problem. If there's no problem, there's nothing to make."
+      </p>
+      <br>
+      <div class="inspo-tags reveal">
+        <span class="inspo-tag">Francis Bacon</span>
+        <span class="inspo-tag">Anselm Kiefer</span>
+        <span class="inspo-tag">Ana Mendieta</span>
+        <span class="inspo-tag">Goya</span>
+        <span class="inspo-tag">Louise Bourgeois</span>
+        <span class="inspo-tag">W.G. Sebald</span>
+      </div>
+    </div>
+
+    <div class="inspo-images">
+      <div class="inspo-img reveal">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+             alt="Studio influence" loading="lazy">
+      </div>
+      <div class="inspo-img reveal">
+        <img src="https://images.unsplash.com/photo-1576769562804-455efbe26d81?w=600&q=80"
+             alt="Studio influence" loading="lazy">
+      </div>
+      <div class="inspo-img reveal">
+        <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&q=80"
+             alt="Studio influence" loading="lazy">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="inspo-influences">
+    <div class="influence reveal">
+      <div class="influence-num">01</div>
+      <h4 class="influence-title">THE BODY</h4>
+      <p class="influence-body">Not as subject but as site. The body as landscape, archive, crime scene.</p>
+    </div>
+    <div class="influence reveal">
+      <div class="influence-num">02</div>
+      <h4 class="influence-title">MATERIAL MEMORY</h4>
+      <p class="influence-body">What survives fire. What paint remembers when you scrape it back to ground.</p>
+    </div>
+    <div class="influence reveal">
+      <div class="influence-num">03</div>
+      <h4 class="influence-title">DURATION</h4>
+      <p class="influence-body">Paintings made over months. The accumulated time in the surface is the content.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= SOCIAL -->
+<section id="social" aria-labelledby="social-heading">
+  <div class="social-header">
+    <div>
+      <p class="s-label">Instagram</p>
+      <h2 class="s-title" id="social-heading">THE STUDIO</h2>
+    </div>
+    <a href="#" class="btn-ghost" style="font-size:0.65rem;padding:10px 22px">Follow</a>
+  </div>
+
+  <div class="social-grid" aria-label="Instagram feed preview">
+    <div class="social-tile" style="background-image:url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=500&q=80')"></div>
+    <div class="social-tile" style="background-image:url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500&q=80')"></div>
+    <div class="social-tile" style="background-image:url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=500&q=80')"></div>
+    <div class="social-tile" style="background-image:url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=500&q=80')"></div>
+    <div class="social-tile" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80')"></div>
+    <div class="social-tile" style="background-image:url('https://images.unsplash.com/photo-1576769562804-455efbe26d81?w=500&q=80')"></div>
+  </div>
+
+  <span class="social-handle">@coraashby.studio</span>
+  <a href="#" class="btn-ghost" style="font-size:0.65rem;padding:11px 26px">Follow on Instagram</a>
+</section>
+
+<!-- ============================================================= FOOTER -->
+<footer>
+  <div class="footer-top">
+
+    <div class="footer-logo-block">
+      <span class="logo">CORA<span>.</span>ASHBY</span>
+      <p class="footer-tagline">Berlin-based painter. Large-scale oil and charcoal. Works held in public and private collections across Europe and North America. Enquiries by appointment.</p>
+      <div class="footer-nl">
+        <input type="email" placeholder="Email for studio updates" aria-label="Subscribe to studio updates">
+        <button type="submit">Subscribe</button>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="#gallery">Works</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#inspirations">Influences</a></li>
+        <li><a href="#social">Studio</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Collect</h5>
+      <ul>
+        <li><a href="#">Original Paintings</a></li>
+        <li><a href="#">Works on Paper</a></li>
+        <li><a href="#">Limited Editions</a></li>
+        <li><a href="#">Commissions</a></li>
+        <li><a href="#">Institutional Sales</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Exhibitions</a></li>
+        <li><a href="#">CV & Bibliography</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Shipping & Handling</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 Cora Ashby. All rights reserved. All works protected by copyright.</p>
+    <div class="footer-soc">
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="Pinterest">Pinterest</a>
+      <a href="#" aria-label="Artsy">Artsy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== ARTWORK VIEWER =====
+  const works = [
+    {
+      num: '01',
+      tag: 'Oil on Raw Linen · 240 × 320cm · 2024',
+      title: 'The Weight of Inheritance',
+      desc: 'Dark grounds and raw pigment applied with palette knife and bare hands — a work about what we carry without choosing to.'
+    },
+    {
+      num: '02',
+      tag: 'Charcoal on Paper · 180 × 240cm · 2023',
+      title: 'Scar Cartography',
+      desc: 'Eight months of accumulated mark-making, erasure, re-drawing. The paper is barely holding together.'
+    },
+    {
+      num: '03',
+      tag: 'Oil & Encaustic · 200 × 200cm · 2023',
+      title: 'Red Witness',
+      desc: 'Wax and pigment burned into the surface with a blow torch. Some areas are still warm when the work is completed.'
+    },
+    {
+      num: '04',
+      tag: 'Oil on Canvas · 140 × 180cm · 2022',
+      title: 'The Unnamed Hours',
+      desc: 'Begun at 3am and never worked on in daylight. The painting knows its own hours.'
+    },
+    {
+      num: '05',
+      tag: 'Charcoal & Ash · 160 × 220cm · 2022',
+      title: 'Afterburn',
+      desc: 'Studio fire residue worked directly into the linen ground. The destruction is the material.'
+    },
+    {
+      num: '06',
+      tag: 'Oil on Linen · 120 × 160cm · 2024',
+      title: 'Interior with Shadow',
+      desc: 'The shadow is painted first. Everything else is what remains after the light has been exhausted.'
+    }
+  ];
+
+  let currentWork = 0;
+  const slides  = document.querySelectorAll('.viewer-slide');
+  const thumbs  = document.querySelectorAll('.thumb');
+  const vNum    = document.getElementById('vNum');
+  const vTag    = document.getElementById('vTag');
+  const vTitle  = document.getElementById('vTitle');
+  const vDesc   = document.getElementById('vDesc');
+
+  function setWork(index) {
+    // Update slides
+    slides[currentWork].classList.remove('active');
+    thumbs[currentWork].classList.remove('active');
+    currentWork = index;
+    slides[currentWork].classList.add('active');
+    thumbs[currentWork].classList.add('active');
+
+    // Update text with fade
+    const w = works[currentWork];
+    [vNum, vTag, vTitle, vDesc].forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(8px)';
+    });
+    setTimeout(() => {
+      vNum.textContent   = w.num;
+      vTag.textContent   = w.tag;
+      vTitle.textContent = w.title;
+      vDesc.textContent  = w.desc;
+      [vNum, vTag, vTitle, vDesc].forEach((el, i) => {
+        setTimeout(() => {
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, i * 60);
+      });
+    }, 200);
+  }
+
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => setWork(+thumb.dataset.index));
+    thumb.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setWork(+thumb.dataset.index); }
+    });
+  });
+
+  // ===== SCROLL ANIMATIONS =====
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

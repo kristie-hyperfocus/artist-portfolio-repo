@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Three example artist portfolio websites demonstrating different design aesthetics — light & airy, dark & dramatic, and warm & earthy. Built to show what's possible for a contemporary artist's online presence.">
+  <title>Artist Portfolio Studio — Example Sites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:       #FAFAF9;
+      --white:    #FFFFFF;
+      --dark:     #111110;
+      --text:     #2C2C2A;
+      --muted:    #888884;
+      --border:   #E4E3DF;
+      --surface:  #F3F2EF;
+      --font:     'Inter', system-ui, sans-serif;
+      --serif:    'DM Serif Display', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); overflow-x: hidden; }
+    img { display: block; width: 100%; object-fit: cover; }
+    a { cursor: pointer; }
+
+    /* ===== TOP BANNER ===== */
+    .top-banner {
+      background: var(--dark);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.12em; color: rgba(255,255,255,0.55);
+    }
+    .top-banner strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+    /* ===== NAV ===== */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 6%;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-brand-mark {
+      width: 32px; height: 32px;
+      background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-style: italic;
+      color: #fff; font-size: 1rem;
+    }
+    .nav-brand-name {
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--dark); letter-spacing: 0.01em;
+    }
+    .nav-brand-sub {
+      font-size: 0.68rem; color: var(--muted);
+      display: block; margin-top: 1px; font-weight: 300;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; color: var(--muted); text-decoration: none;
+      letter-spacing: 0.01em; transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-cta {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--white); background: var(--dark);
+      text-decoration: none; padding: 9px 20px;
+      transition: opacity 0.25s;
+    }
+    .nav-cta:hover { opacity: 0.8; }
+
+    /* ===== HERO ===== */
+    #hero {
+      background: var(--dark);
+      padding: 88px 6% 80px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    /* Subtle grid background */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .hero-disclaimer {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 14px; font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); margin-bottom: 28px;
+      position: relative; z-index: 1;
+    }
+    .hero-disclaimer-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: #86efac; animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: #fff; line-height: 1.1;
+      margin-bottom: 20px; position: relative; z-index: 1;
+    }
+    .hero-title em { font-style: italic; }
+    .hero-sub {
+      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+      font-weight: 300; line-height: 1.8;
+      color: rgba(255,255,255,0.5); max-width: 580px;
+      margin: 0 auto 40px; position: relative; z-index: 1;
+    }
+    .hero-tags {
+      display: flex; gap: 10px; justify-content: center;
+      flex-wrap: wrap; position: relative; z-index: 1;
+    }
+    .hero-tag {
+      font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 7px 16px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ===== EXPLAINER ===== */
+    #explainer {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 6%;
+    }
+    .explainer-inner {
+      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 24px; align-items: flex-start;
+    }
+    .explainer-icon {
+      width: 42px; height: 42px; background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .explainer-text strong {
+      display: block; font-size: 0.85rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 6px; letter-spacing: 0.01em;
+    }
+    .explainer-text p {
+      font-size: 0.84rem; font-weight: 300; line-height: 1.75; color: var(--muted);
+    }
+
+    /* ===== SITES GRID ===== */
+    #sites { padding: 80px 6%; }
+
+    .sites-heading {
+      text-align: center; margin-bottom: 60px;
+    }
+    .sites-heading .label {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+    }
+    .sites-heading h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--dark);
+    }
+
+    .sites-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1200px; margin: 0 auto;
+    }
+
+    /* ===== SITE CARD ===== */
+    .site-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .site-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(17,17,16,0.1);
+    }
+
+    /* Browser chrome */
+    .card-chrome {
+      background: #F0EEE9; border-bottom: 1px solid var(--border);
+      padding: 9px 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .chrome-dots { display: flex; gap: 5px; }
+    .chrome-dots span {
+      width: 9px; height: 9px; border-radius: 50%;
+    }
+    .chrome-dots span:nth-child(1) { background: #FF5F57; }
+    .chrome-dots span:nth-child(2) { background: #FFBD2E; }
+    .chrome-dots span:nth-child(3) { background: #28CA41; }
+    .chrome-url {
+      flex: 1; background: var(--white);
+      border: 1px solid var(--border); border-radius: 3px;
+      padding: 3px 10px;
+      font-size: 0.62rem; color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* Preview panel — CSS-rendered miniatures */
+    .card-preview { height: 200px; overflow: hidden; position: relative; }
+
+    /* ——— SITE A PREVIEW: Light & Airy ——— */
+    .preview-a {
+      height: 100%; background: #F8F5EF;
+      display: flex; position: relative;
+    }
+    .pva-image {
+      width: 55%; height: 100%;
+      background: linear-gradient(160deg, #D4C4AA 0%, #B8A080 50%, #C8B090 100%);
+      position: relative;
+    }
+    .pva-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(248,245,239,0.4) 0%, transparent 60%);
+    }
+    .pva-content {
+      width: 45%; padding: 22px 16px;
+      display: flex; flex-direction: column; justify-content: flex-end; gap: 5px;
+    }
+    .pva-tag { width: 60%; height: 3px; background: #B8956A; margin-bottom: 4px; }
+    .pva-h1 { width: 85%; height: 8px; background: #2E2B27; border-radius: 1px; }
+    .pva-h2 { width: 65%; height: 8px; background: #2E2B27; border-radius: 1px; }
+    .pva-text { width: 90%; height: 3px; background: #C4B8A8; border-radius: 1px; margin-top: 4px; }
+    .pva-text2 { width: 70%; height: 3px; background: #C4B8A8; border-radius: 1px; }
+    .pva-btn {
+      width: 60px; height: 18px; margin-top: 8px;
+      border: 1px solid #2E2B27;
+    }
+    .pva-nav {
+      position: absolute; top: 0; left: 0; right: 0; height: 10px;
+      background: rgba(253,252,250,0.9); border-bottom: 1px solid rgba(184,149,106,0.2);
+    }
+
+    /* ——— SITE B PREVIEW: Dark & Dramatic ——— */
+    .preview-b {
+      height: 100%; background: #0A0908;
+      display: flex; align-items: flex-end;
+      position: relative; overflow: hidden;
+    }
+    .pvb-image {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #1C1820 0%, #0F0E14 40%, #1A1018 100%);
+    }
+    .pvb-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(9,8,10,0.88) 0%, rgba(9,8,10,0.3) 60%, transparent 100%);
+    }
+    .pvb-content {
+      position: relative; z-index: 2;
+      padding: 16px; width: 70%;
+    }
+    .pvb-tag { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+    .pvb-tag-line { width: 16px; height: 1px; background: #C0263A; }
+    .pvb-tag-text { width: 50px; height: 3px; background: rgba(192,38,58,0.6); }
+    .pvb-h1 { width: 90%; height: 14px; background: rgba(255,255,255,0.85); border-radius: 1px; margin-bottom: 4px; }
+    .pvb-h2 { width: 70%; height: 14px; background: rgba(255,255,255,0.85); border-radius: 1px; }
+    .pvb-rule { width: 100%; height: 1px; background: linear-gradient(to right, #C0263A, transparent); margin: 8px 0; }
+    .pvb-text { width: 80%; height: 3px; background: rgba(255,255,255,0.2); border-radius: 1px; margin-bottom: 3px; }
+    .pvb-text2 { width: 60%; height: 3px; background: rgba(255,255,255,0.2); border-radius: 1px; margin-bottom: 8px; }
+    .pvb-btn { width: 55px; height: 17px; background: #C0263A; }
+    .pvb-nav {
+      position: absolute; top: 0; left: 0; right: 0; height: 9px;
+      background: rgba(9,8,10,0.95); border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 3;
+    }
+
+    /* ——— SITE C PREVIEW: Warm & Earthy ——— */
+    .preview-c {
+      height: 100%; display: flex; position: relative;
+    }
+    .pvc-image {
+      width: 55%; height: 100%;
+      background: linear-gradient(160deg, #C4844A 0%, #9E6030 50%, #B87848 100%);
+      position: relative;
+    }
+    .pvc-image::after {
+      content: '';
+      position: absolute; top: 0; right: 0; bottom: 0; width: 30px;
+      background: linear-gradient(to right, transparent, #EDE0CE);
+    }
+    .pvc-panel {
+      width: 45%; background: #EDE0CE;
+      padding: 20px 14px;
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    }
+    .pvc-tag-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .pvc-tag-line { width: 14px; height: 1px; background: #B85C38; }
+    .pvc-tag-text { width: 55px; height: 3px; background: rgba(184,92,56,0.5); }
+    .pvc-h1 { width: 80%; height: 9px; background: #2A1E14; border-radius: 1px; margin-bottom: 3px; }
+    .pvc-h2 { width: 60%; height: 9px; background: #B85C38; font-style: italic; border-radius: 1px; }
+    .pvc-line { width: 100%; height: 1px; background: #D9C8B2; margin: 6px 0; }
+    .pvc-text { width: 88%; height: 3px; background: #9A8878; border-radius: 1px; margin-bottom: 3px; }
+    .pvc-text2 { width: 70%; height: 3px; background: #9A8878; border-radius: 1px; margin-bottom: 8px; }
+    .pvc-btn { width: 55px; height: 17px; background: #B85C38; }
+    .pvc-nav {
+      position: absolute; top: 0; left: 0; right: 0; height: 10px;
+      background: rgba(244,235,220,0.93); border-bottom: 1px solid #D9C8B2;
+      z-index: 2;
+    }
+
+    /* Card body */
+    .card-body { padding: 24px 24px 28px; }
+
+    .card-style-tag {
+      display: inline-block; font-size: 0.62rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 4px 10px; margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .tag-a { background: rgba(184,149,106,0.12); color: #8B6D3A; }
+    .tag-b { background: rgba(192,38,58,0.1); color: #9B1A2E; }
+    .tag-c { background: rgba(184,92,56,0.1); color: #8B4020; }
+
+    .card-artist {
+      font-family: var(--serif); font-size: 1.4rem;
+      color: var(--dark); margin-bottom: 4px; line-height: 1.2;
+    }
+    .card-artist em { font-style: italic; }
+
+    .card-style-name {
+      font-size: 0.75rem; font-weight: 400; color: var(--muted);
+      margin-bottom: 14px; letter-spacing: 0.04em;
+    }
+
+    .card-divider { width: 28px; height: 1px; background: var(--border); margin-bottom: 14px; }
+
+    .card-desc {
+      font-size: 0.83rem; font-weight: 300;
+      line-height: 1.75; color: var(--muted); margin-bottom: 18px;
+    }
+
+    .card-features {
+      list-style: none; margin-bottom: 22px;
+    }
+    .card-features li {
+      font-size: 0.75rem; font-weight: 300; color: var(--muted);
+      padding: 5px 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card-features li:last-child { border-bottom: none; }
+    .card-features li::before { content: '→'; color: var(--border); font-size: 0.7rem; }
+
+    .card-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em;
+      color: var(--dark); text-decoration: none;
+      border-bottom: 1px solid var(--dark);
+      padding-bottom: 2px;
+      transition: gap 0.25s ease, border-color 0.25s;
+    }
+    .card-cta:hover { gap: 14px; }
+    .card-cta-arrow { transition: transform 0.25s; }
+    .card-cta:hover .card-cta-arrow { transform: translateX(4px); }
+
+    /* ===== WHAT'S INCLUDED ===== */
+    #included {
+      background: var(--dark);
+      padding: 80px 6%;
+    }
+    .included-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .included-header .label {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-bottom: 12px;
+    }
+    .included-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      color: #fff;
+    }
+    .included-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.07);
+      max-width: 1100px; margin: 0 auto;
+    }
+    .included-item {
+      background: var(--dark); padding: 28px 24px;
+      transition: background 0.3s;
+    }
+    .included-item:hover { background: #1C1C1A; }
+    .included-num {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.4rem; color: rgba(255,255,255,0.12);
+      margin-bottom: 10px;
+    }
+    .included-title {
+      font-size: 0.78rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+    .included-desc {
+      font-size: 0.75rem; font-weight: 300;
+      line-height: 1.65; color: rgba(255,255,255,0.35);
+    }
+
+    /* ===== NEXT STEPS ===== */
+    #next-steps { padding: 80px 6%; background: var(--surface); }
+    .next-inner { max-width: 860px; margin: 0 auto; }
+    .next-steps-header { margin-bottom: 44px; }
+    .next-steps-header .label {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .next-steps-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--dark);
+    }
+    .steps-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .step {
+      background: var(--white); border: 1px solid var(--border);
+      padding: 22px 20px;
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: border-color 0.3s;
+    }
+    .step:hover { border-color: var(--dark); }
+    .step-num {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.6rem; color: var(--border); line-height: 1;
+      flex-shrink: 0;
+    }
+    .step h4 {
+      font-size: 0.82rem; font-weight: 500; color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .step p {
+      font-size: 0.78rem; font-weight: 300;
+      line-height: 1.65; color: var(--muted);
+    }
+    .step-status {
+      display: inline-block; font-size: 0.58rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 3px 8px; margin-top: 8px;
+    }
+    .status-done { background: rgba(134,239,172,0.15); color: #15803D; }
+    .status-next { background: rgba(251,191,36,0.1); color: #92400E; }
+
+    /* ===== CTA ===== */
+    #cta {
+      background: var(--white); border-top: 1px solid var(--border);
+      padding: 80px 6%; text-align: center;
+    }
+    .cta-inner { max-width: 560px; margin: 0 auto; }
+    .cta-inner .label {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 14px;
+    }
+    .cta-inner h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      color: var(--dark); margin-bottom: 16px;
+    }
+    .cta-inner p {
+      font-size: 0.88rem; font-weight: 300;
+      line-height: 1.75; color: var(--muted); margin-bottom: 32px;
+    }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-dark {
+      display: inline-block; font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--white); background: var(--dark);
+      text-decoration: none; padding: 13px 30px;
+      transition: opacity 0.25s;
+    }
+    .btn-dark:hover { opacity: 0.8; }
+    .btn-outline {
+      display: inline-block; font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--dark); background: transparent;
+      text-decoration: none; padding: 13px 30px;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+    .btn-outline:hover { border-color: var(--dark); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark); padding: 32px 6%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(255,255,255,0.25); font-weight: 300;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 0.72rem; color: rgba(255,255,255,0.3);
+      text-decoration: none; letter-spacing: 0.06em;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .sites-grid { grid-template-columns: 1fr; max-width: 500px; }
+      .included-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .included-grid { grid-template-columns: 1fr; }
+      #hero { padding: 60px 6%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BANNER -->
+<div class="top-banner">
+  <strong>Demo Sites Only</strong> — These are example portfolio designs. The artists shown are fictional.
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand" aria-label="Artist Portfolio Studio — Home">
+    <div class="nav-brand-mark" aria-hidden="true"><em>A</em></div>
+    <div>
+      <span class="nav-brand-name">Artist Portfolio Studio</span>
+      <span class="nav-brand-sub">Example Sites &amp; Components</span>
+    </div>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#sites">Examples</a></li>
+    <li><a href="#included">What's Included</a></li>
+    <li><a href="#next-steps">Next Steps</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" role="banner">
+  <div class="hero-disclaimer">
+    <span class="hero-disclaimer-dot"></span>
+    3 Design Directions — Live Examples
+  </div>
+  <h1 class="hero-title">
+    Artist Portfolio Sites<br>
+    <em>Built to Collect</em>
+  </h1>
+  <p class="hero-sub">
+    Three fully built example websites — each a different aesthetic direction for a contemporary artist's online presence. Browse, compare, and choose the feel that's right for you.
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag">Light &amp; Airy</span>
+    <span class="hero-tag">Dark &amp; Dramatic</span>
+    <span class="hero-tag">Warm &amp; Earthy</span>
+  </div>
+</section>
+
+<!-- EXPLAINER -->
+<div id="explainer">
+  <div class="explainer-inner">
+    <div class="explainer-icon" aria-hidden="true">ℹ</div>
+    <div class="explainer-text">
+      <strong>About These Examples</strong>
+      <p>
+        The sites below are working prototypes built to showcase three distinct design approaches for artist portfolio websites. The artists — Elena Voss, Cora Ashby, and Sol Maren — are entirely fictional. All works shown are placeholder images. These examples are designed to give a clear sense of layout, typography, interaction style, and tone before any real content is applied. Every section you see — navigation, hero, gallery, collections, about, inspirations, social feed, and footer — would be populated with the real artist's work, biography, and brand.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SITES GRID -->
+<section id="sites" aria-labelledby="sites-heading">
+  <div class="sites-heading">
+    <p class="label">Three Directions</p>
+    <h2 id="sites-heading">Choose Your <em>Aesthetic</em></h2>
+  </div>
+
+  <div class="sites-grid">
+
+    <!-- SITE A -->
+    <article class="site-card" aria-label="Example Site A — Light and Airy">
+      <div class="card-chrome" aria-hidden="true">
+        <div class="chrome-dots"><span></span><span></span><span></span></div>
+        <div class="chrome-url">elenavoss.com</div>
+      </div>
+      <div class="card-preview" aria-hidden="true">
+        <div class="preview-a">
+          <div class="pva-nav"></div>
+          <div class="pva-image"></div>
+          <div class="pva-content">
+            <div class="pva-tag"></div>
+            <div class="pva-h1"></div>
+            <div class="pva-h2"></div>
+            <div class="pva-text"></div>
+            <div class="pva-text2"></div>
+            <div class="pva-btn"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-style-tag tag-a">Light &amp; Airy</span>
+        <h3 class="card-artist">Elena <em>Voss</em></h3>
+        <p class="card-style-name">Mixed media · Melbourne, AU</p>
+        <div class="card-divider"></div>
+        <p class="card-desc">
+          A warm, gallery-white aesthetic inspired by museum and high-end commercial gallery sites. Cormorant Garamond typography, cream and gold palette, generous whitespace.
+        </p>
+        <ul class="card-features">
+          <li>Auto-playing full-screen hero slider</li>
+          <li>Horizontal expandable card gallery</li>
+          <li>Nested collections grid</li>
+          <li>Side-by-side artist about section</li>
+          <li>Scroll-reveal animations throughout</li>
+        </ul>
+        <a href="artist-portfolio.html" class="card-cta">
+          View Example <span class="card-cta-arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- SITE B -->
+    <article class="site-card" aria-label="Example Site B — Dark and Dramatic">
+      <div class="card-chrome" aria-hidden="true">
+        <div class="chrome-dots"><span></span><span></span><span></span></div>
+        <div class="chrome-url">coraashby.com</div>
+      </div>
+      <div class="card-preview" aria-hidden="true">
+        <div class="preview-b">
+          <div class="pvb-nav"></div>
+          <div class="pvb-image"></div>
+          <div class="pvb-content">
+            <div class="pvb-tag"><div class="pvb-tag-line"></div><div class="pvb-tag-text"></div></div>
+            <div class="pvb-h1"></div>
+            <div class="pvb-h2"></div>
+            <div class="pvb-rule"></div>
+            <div class="pvb-text"></div>
+            <div class="pvb-text2"></div>
+            <div class="pvb-btn"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-style-tag tag-b">Dark &amp; Dramatic</span>
+        <h3 class="card-artist">Cora <em>Ashby</em></h3>
+        <p class="card-style-name">Oil &amp; Charcoal · Berlin, DE</p>
+        <div class="card-divider"></div>
+        <p class="card-desc">
+          Confrontational and bold. Near-black backgrounds, Bebas Neue condensed display type, deep crimson accent. For artists whose work demands to be taken seriously.
+        </p>
+        <ul class="card-features">
+          <li>Dramatic static hero with slow-zoom animation</li>
+          <li>Artwork viewer with thumbnail navigation</li>
+          <li>Scrolling collection name marquee</li>
+          <li>Masonry recent works grid</li>
+          <li>Film-grain CSS texture overlay</li>
+        </ul>
+        <a href="artist-portfolio-b.html" class="card-cta">
+          View Example <span class="card-cta-arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- SITE C -->
+    <article class="site-card" aria-label="Example Site C — Warm and Earthy">
+      <div class="card-chrome" aria-hidden="true">
+        <div class="chrome-dots"><span></span><span></span><span></span></div>
+        <div class="chrome-url">solmaren.com</div>
+      </div>
+      <div class="card-preview" aria-hidden="true">
+        <div class="preview-c">
+          <div class="pvc-nav"></div>
+          <div class="pvc-image"></div>
+          <div class="pvc-panel">
+            <div class="pvc-tag-row"><div class="pvc-tag-line"></div><div class="pvc-tag-text"></div></div>
+            <div class="pvc-h1"></div>
+            <div class="pvc-h2"></div>
+            <div class="pvc-line"></div>
+            <div class="pvc-text"></div>
+            <div class="pvc-text2"></div>
+            <div class="pvc-btn"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-style-tag tag-c">Warm &amp; Earthy</span>
+        <h3 class="card-artist">Sol <em>Maren</em></h3>
+        <p class="card-style-name">Ceramics &amp; Earth Pigment · Lisbon, PT</p>
+        <div class="card-divider"></div>
+        <p class="card-desc">
+          Organic and tactile. Terracotta, ochre, sage green on warm sand. DM Serif Display italic headings, a woven linen CSS texture, and interactions that feel physical and handmade.
+        </p>
+        <ul class="card-features">
+          <li>Split-screen hero with organic divider</li>
+          <li>Asymmetric mosaic gallery grid</li>
+          <li>Horizontal drag-to-scroll collections</li>
+          <li>Circular portrait with animated ring</li>
+          <li>Expandable earth pigment swatch palette</li>
+        </ul>
+        <a href="artist-portfolio-c.html" class="card-cta">
+          View Example <span class="card-cta-arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section id="included" aria-labelledby="included-heading">
+  <div class="included-header">
+    <p class="label">Every Example Includes</p>
+    <h2 id="included-heading">Built-in Sections</h2>
+  </div>
+  <div class="included-grid">
+    <div class="included-item">
+      <div class="included-num">01</div>
+      <h3 class="included-title">Navigation</h3>
+      <p class="included-desc">Fixed sticky nav with smooth scroll links, logo, and enquiry CTA. Glassmorphism on scroll.</p>
+    </div>
+    <div class="included-item">
+      <div class="included-num">02</div>
+      <h3 class="included-title">Hero Section</h3>
+      <p class="included-desc">Full-viewport entry — slider, static dramatic, or split screen. Each with animation and mobile fallback.</p>
+    </div>
+    <div class="included-item">
+      <div class="included-num">03</div>
+      <h3 class="included-title">Artwork Gallery</h3>
+      <p class="included-desc">Interactive gallery with hover reveals, title, medium, dimensions, and enquiry button per work.</p>
+    </div>
+    <div class="included-item">
+      <div class="included-num">04</div>
+      <h3 class="included-title">About the Artist</h3>
+      <p class="included-desc">Portrait, biography, stats (shows, collections, years), and downloadable CV link.</p>
+    </div>
+    <div class="included-item">
+      <div class="included-num">05</div>
+      <h3 class="included-title">Collections</h3>
+      <p class="included-desc">Works grouped by series. Visual grid or drag-scroll with titles, dates, and work counts.</p>
+    </div>
+    <div class="included-item">
+      <div class="included-num">06</div>
+      <h3 class="included-title">Recent Works</h3>
+      <p class="included-desc">Latest pieces with medium, year, and hover-reveal enquiry. Grid updates to feature new arrivals.</p>
+    </div>
+    <div class="included-item">
+      <div class="included-num">07</div>
+      <h3 class="included-title">Inspirations</h3>
+      <p class="included-desc">Artist statement, influences, source imagery. Gives collectors context for the practice.</p>
+    </div>
+    <div class="included-item">
+      <div class="included-num">08</div>
+      <h3 class="included-title">Social + Footer</h3>
+      <p class="included-desc">Instagram preview grid, newsletter subscription, navigation, legal, and social links.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section id="next-steps" aria-labelledby="next-heading">
+  <div class="next-inner">
+    <div class="next-steps-header">
+      <p class="label">The Roadmap</p>
+      <h2 id="next-heading">What Comes Next</h2>
+    </div>
+    <div class="steps-list">
+      <div class="step">
+        <span class="step-num">1</span>
+        <div>
+          <h4>Choose a Direction</h4>
+          <p>Pick the aesthetic that fits the artist's practice — or mix elements from multiple examples.</p>
+          <span class="step-status status-done">Complete — 3 options ready</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <div>
+          <h4>Populate with Real Content</h4>
+          <p>Replace placeholder images and text with actual artworks, biography, and artist photography.</p>
+          <span class="step-status status-next">Up Next</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <div>
+          <h4>Connect a CMS</h4>
+          <p>Add Sanity, Contentful or similar so the artist can update their gallery without touching code.</p>
+          <span class="step-status status-next">Phase 2</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <div>
+          <h4>Add a Shop / Print Sales</h4>
+          <p>Integrate Shopify Buy Button or a print-on-demand service for selling editions and prints.</p>
+          <span class="step-status status-next">Phase 2</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">5</span>
+        <div>
+          <h4>Custom Domain + SEO</h4>
+          <p>Connect to a real domain. Meta tags, structured data, and sitemap are already scaffolded in each site.</p>
+          <span class="step-status status-next">Phase 3</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">6</span>
+        <div>
+          <h4>Analytics &amp; Enquiry Tracking</h4>
+          <p>Add GA4 or Plausible, connect enquiry forms to a CRM, and track which works generate interest.</p>
+          <span class="step-status status-next">Phase 3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" aria-labelledby="cta-heading">
+  <div class="cta-inner">
+    <p class="label">Ready to Start?</p>
+    <h2 id="cta-heading">Let's Build Yours</h2>
+    <p>These examples are the starting point. Your site will be built around your work, your story, and your collectors — with the design, CMS, and shop integrations that fit your practice.</p>
+    <div class="cta-btns">
+      <a href="mailto:hello@example.com" class="btn-dark">Start a Project</a>
+      <a href="#sites" class="btn-outline">Browse Examples Again</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">© 2024 Artist Portfolio Studio. All example sites and content are for demonstration purposes only.</p>
+  <div class="footer-links">
+    <a href="#sites">Examples</a>
+    <a href="#included">Features</a>
+    <a href="#cta">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
